@@ -1,4 +1,4 @@
-FROM cyversevice/jupyterlab-tensorflow:2.2.x
+FROM cyversevice/jupyterlab-tensorflow:2.2.9
 
 USER root
 
