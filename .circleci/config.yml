@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  build0:
+    docker:
+      - image: cyversevice/jupyterlab-tensorflow:latest
+    steps:
+      - checkout
+      - run: jupyter lab --version
+  build1:
+    docker:
+      - image: cyversevice/jupyterlab-tensorflow:2.2.9
+    steps:
+      - checkout
+      - run: jupyter lab --version
+  build2:
+    docker:
+      - image: cyversevice/jupyterlab-tensorflow:geospatial-2.2.9
+    steps:
+      - checkout
+      - run: jupyter lab --version
+ 
+workflows:
+  build:
+    jobs:
+      - build0
+      - build1
+      - build2
