@@ -2,6 +2,8 @@ FROM jupyter/tensorflow-notebook:d113a601dbb8
 
 USER root
 
+RUN conda install -c conda-forge tensorflow-probability -y 
+
 # Install a few dependencies for iCommands, text editing, and monitoring instances
 RUN apt-get update && apt-get install -y lsb-release wget apt-transport-https curl supervisor nginx gnupg2 libfuse2 nano htop gcc less nodejs software-properties-common apt-utils glances
 
@@ -22,10 +24,6 @@ RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add - 
     ./libssl1.0.0_1.0.2n-1ubuntu5.5_amd64.deb
 
 RUN apt install -y irods-icommands
-
-# install iRODS plugin
-RUN jupyter labextension install ijab && \
-    pip install jupyterlab_irods
 
 # Install CyberDuck CLI
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && \
@@ -49,9 +47,21 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # Rebuild the Jupyter Lab with new tools
 RUN jupyter lab build
 
+# purge older nodejs
+RUN apt purge nodejs -y
+
 USER jovyan
 WORKDIR /home/jovyan
 
+# install iRODS plugin
+RUN conda install -c conda-forge nodejs -y
+RUN pip install jupyterlab_irods
+
+USER root
+RUN jupyter serverextension enable --py jupyterlab_irods
+RUN jupyter labextension install ijab
+
+USER jovyan
 EXPOSE 8888
 
 COPY entry.sh /bin
