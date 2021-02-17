@@ -8,7 +8,7 @@ RUN apt-get update && \
     rm -rv /var/lib/apt/lists/*
 
 RUN chown -R jovyan:jovyan /opt/conda
-USER $NB_USER
+USER jovyan
 
 RUN conda update -n base conda 
 
@@ -81,6 +81,9 @@ RUN conda install --yes -c conda-forge \
     vega_datasets \
     zarr 
 
+# add Tensorflow Probability -- late in the build may move to prior container sooner than later
+RUN conda install -c conda-forge tensorflow-probability
+
 RUN conda clean --all -f -y 
 
 RUN jupyter labextension install \
@@ -107,4 +110,21 @@ RUN jupyter lab build
 RUN pip install xshape porder
 
 RUN conda clean --all -f -y
+
+USER root
+# purge older nodejs
+RUN apt purge nodejs -y
+
+USER jovyan
+WORKDIR /home/jovyan
+
+# install iRODS plugin
+RUN conda install -c conda-forge nodejs -y
+RUN pip install jupyterlab_irods
+
+USER root
+RUN jupyter serverextension enable --py jupyterlab_irods
+RUN jupyter labextension install ijab
+
+USER jovyan
 
