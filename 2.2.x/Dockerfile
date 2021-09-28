@@ -60,8 +60,7 @@ RUN apt-get update && \
 ARG LOCAL_USER=jovyan
 ARG PRIV_CMDS='/bin/ch*,/bin/cat,/bin/gunzip,/bin/tar,/bin/mkdir,/bin/ps,/bin/mv,/bin/cp,/usr/bin/apt*,/usr/bin/pip*,/bin/yum'
 
-RUN adduser --disabled-password --gecos "VICE_User" --uid 1000 jovyan  && \
-    usermod -aG sudo jovyan && \
+RUN usermod -aG sudo jovyan && \
     echo "$LOCAL_USER ALL=NOPASSWD: $PRIV_CMDS" >> /etc/sudoers
 
 # Add the jovyan user to UID 1000
