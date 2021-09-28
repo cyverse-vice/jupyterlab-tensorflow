@@ -1,4 +1,4 @@
-FROM cyversevice/jupyterlab-tensorflow:2.2.9
+FROM harbor.cyverse.org/vice/jupyter/tensorflow:latest
 
 USER root
 
