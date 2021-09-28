@@ -12,9 +12,6 @@ USER jovyan
 
 RUN conda update -n base conda 
 
-RUN conda config --remove channels defaults && \
-    conda config --add channels conda-forge
-
 RUN conda install --yes -c conda-forge \
     altair \
     awscli \
