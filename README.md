@@ -5,13 +5,13 @@
 
 Jupyter Lab Datascience image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store.
 
-[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![DockerHub](https://img.shields.io/badge/DockerHub-gray.svg?style=popout&logo=Docker)](https://hub.docker.com/r/cyversevice/jupyterlab-tensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/cyversevice/jupyterlab-tensorflow)
+[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://hub.docker.com/r/cyversevice/jupyterlab-tensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
 
-quick launch | tag | size |  
------------- | --- | ---- |
-<a href="" target="_blank"><img src="https://de.cyverse.org/Powered-By-CyVerse-blue.svg"></a> | ![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/cyversevice/jupyterlab-tensorflow/latest?style=flat-square) | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/latest?style=flat-square) 
-<a href="" target="_blank"><img src="https://de.cyverse.org/Powered-By-CyVerse-blue.svg"></a> | ![Docker Image Version (tag 2.2.9 semver)](https://img.shields.io/docker/v/cyversevice/jupyterlab-tensorflow/2.2.9?style=flat-square) | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/2.2.9?style=flat-square) 
-<a href="" target="_blank"><img src="https://de.cyverse.org/Powered-By-CyVerse-blue.svg"></a> | ![Docker Image Version (tag geospatial-2.2.9 semver)](https://img.shields.io/docker/v/cyversevice/jupyterlab-tensorflow/geospatial-2.2.9?style=flat-square) | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/geospatial-2.2.9?style=flat-square) 
+quick launch | size | 
+------------ | ---- | 
+<a href="" target="_blank"><img src="https://img.shields.io/badge/Tensorflow-latest-orange?style=plastic&logo=tensorflow"></a> | [![SIZE](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/latest.svg)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/latest) |
+<a href="" target="_blank"><img src="https://img.shields.io/badge/Tensorflow-geospatial-orange?style=plastic&logo=tensorflow"></a> | [![SIZE](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-Tensorflow/geospatial.svg)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/geospatial) |
+<a href="https://de.cyverse.org/apps/de/07a2d5b2-76e2-11eb-be5f-008cfa5ae621/launch?quick-launch-id=60054c75-0e80-4169-8a9b-51cba04f756d" target="_blank"><img src="https://img.shields.io/badge/Tensorflow-2.2.9-orange?style=plastic&logo=tensorflow"></a> | [![SIZE](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/2.2.9.svg)](https://img.shields.io/docker/image-size/cyversevice/jupyterlab-tensorflow/2.2.9) |
 
 # Instructions
 
