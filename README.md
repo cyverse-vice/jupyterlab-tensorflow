@@ -3,9 +3,11 @@
 # jupyterlab-tensorflow
 [Project Jupyter](https://jupyter.org/) Tensorflow Notebook with CyVerse addins.
 
-Jupyter Lab Datascience image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store.
+Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store, which we have added.
 
-[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://hub.docker.com/r/cyversevice/jupyterlab-tensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
+CyVerse maintains a private [Harbor.io](https://goharbor.io) container registry. We push our containers from GitHub Actions to our Harbor, where they can be publicly re-used, or (re)built from GitHub pull requests. 
+
+[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://harbor.cyverse.org/harbor/projects/17/repositories/jupyter%2Ftensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
 
 quick launch | size | 
 ------------ | ---- | 
@@ -17,22 +19,20 @@ quick launch | size |
 
 ## Run Docker locally or on a Virtual Machine
 
-To run the JupyterLab, you must first `pull` from DockerHub, or activate a [CyVerse Account](https://user.cyverse.org/services/mine) and launch in the Discovery Environment VICE.
-
 The container for running JupyterLab is hosted on DockerHub and can be started locally:
 
 ```
-docker pull cyversevice/jupyterlab-tensorflow:latest
+docker pull harbor.cyverse.org/vice/jupyter/tensorflow:latest
 ```
 
 ```
-docker run -it --rm -d cyversevice/jupyterlab-tensorflow:latest
+docker run -it --rm -d harbor.cyverse.org/vice/jupyter/tensorflow:latest
 ```
 
 ## Run Docker with NVIDIA GPU
 
 ```
-docker run --gpus all -it --rm -d cyversevice/jupyterlab-tensorflow:latest
+docker run --gpus all -it --rm -d harbor.cyverse.org/vice/jupyter/tensorflow:latest
 ```
 
 ## Run Docker container in CyVerse VICE
@@ -46,5 +46,5 @@ You can build a new Docker container with additional dependencies from this Dock
 To test the container locally:
 
 ```
-docker run --gpus all -it --rm -v /$HOME:/work --workdir /work -p 8888:8888 -e REDIRECT_URL=http://localhost:8888 cyversevice/jupyterlab-tensorflow:latest
+docker run --gpus all -it --rm -v /$HOME:/work --workdir /work -p 8888:8888 -e REDIRECT_URL=http://localhost:8888 harbor.cyverse.org/vice/jupyter/tensorflow:latest
 ```
