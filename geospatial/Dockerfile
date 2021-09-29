@@ -58,18 +58,27 @@ RUN conda install --yes -c conda-forge \
 
 # Geospatial Conda Packages
 RUN conda install --yes -c conda-forge \
-    basemap \
-    cartopy \
-    earthengine-api \
-    earthpy \
     entwine \
+    geos \
+    gdal \
+    pdal \
+    proj 
+
+RUN conda install --yes -c conda-forge \
+    cartopy \
     fiona \    
     folium \     
-    geemap \
     geopandas \
-    ipyleaflet \
-    pdal \
-    planet \
+    ipyleaflet 
+
+RUN conda install --yes -c conda-forge \
+    earthengine-api \
+    geemap 
+
+RUN conda install --yes -c conda-forge\
+    planet    
+
+RUN conda install --yes -c conda-forge \
     regionmask \
     satpy \
     xarray \
@@ -78,17 +87,21 @@ RUN conda install --yes -c conda-forge \
     vega_datasets \
     zarr 
 
+
 # add Tensorflow Probability -- late in the build may move to prior container sooner than later
-RUN conda install -c conda-forge tensorflow-probability
+RUN conda install --yes -c conda-forge tensorflow-probability
 
 RUN conda clean --all -f -y 
 
+# Install JupyterLab Extensions
+
+RUN conda install -c conda-forge jupyter_bokeh
+
+RUN pip install jupyterlab-geojson sidecar
+
+RUN jupyter labextension install @jupyterlab/toc
+
 RUN jupyter labextension install \
-    @bokeh/jupyter_bokeh \
-    @jupyter-widgets/jupyterlab-manager \
-    @jupyter-widgets/jupyterlab-sidecar \
-    @jupyterlab/geojson-extension \
-    @jupyterlab/toc \
     ipyvolume \
     itkwidgets \    
     jupyterlab_iframe \ 
@@ -99,11 +112,11 @@ RUN jupyter labextension install \
 # add bqplot extension
 RUN jupyter labextension install bqplot && \
     jupyter nbextension install bqplot --py --symlink --sys-prefix && \ 
-    jupyter nbextension enable --py --sys-prefix bqplot
+    jupyter nbextension enable bqplot --py --sys-prefix
 
 RUN jupyter lab build
 
-# pip install
+# pip install Planet POrder 
 RUN pip install xshape porder
 
 RUN conda clean --all -f -y
