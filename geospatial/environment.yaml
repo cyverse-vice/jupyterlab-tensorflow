@@ -1,0 +1,73 @@
+name: geospatial
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - altair 
+  - awscli 
+  - bottleneck 
+  - contextily 
+  - cython   
+  - dask 
+  - h5py 
+  - humanize 
+  - gcsfs  
+  - google-api-python-client 
+  - ipyparallel 
+  - ipyvolume 
+  - ipywidgets
+  - jupyter_bokeh 
+  - matplotlib 
+  - ncurses 
+  - netcdf4 
+  - nodejs 
+  - numcodecs  
+  - oauth2client 
+  - opencv 
+  - palettable 
+  - pandas 
+  - pathlib2 
+  - pycrypto 
+  - pyhdf 
+  - pyresample 
+  - pyproj 
+  - pysal 
+  - rasterio 
+  - s3fs 
+  - scikit-learn 
+  - scikit-image 
+  - scikit-image 
+  - scipy 
+  - seaborn 
+  - shapely 
+  - six 
+  - spectral 
+  - statsmodels 
+  - tqdm 
+  - udunits2 
+  - wget 
+# geospatial abstraction stuff
+  - entwine 
+  - geos 
+  - gdal 
+  - pdal 
+  - proj 
+# python viz stuff
+  - cartopy 
+  - fiona
+  - folium  
+  - geopandas 
+  - ipyleaflet 
+# earthengine stuff
+  - earthengine-api 
+  - geemap 
+# Planet labs API
+  - planet
+# Xarray and Zarr
+  - regionmask 
+  - satpy 
+  - xarray 
+  - xarray-topo 
+  - xarray-simlab 
+  - vega_datasets 
+  - zarr 
