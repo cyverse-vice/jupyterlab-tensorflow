@@ -3,7 +3,7 @@
 # jupyterlab-tensorflow
 [Project Jupyter](https://jupyter.org/) Tensorflow Notebook with CyVerse addins.
 
-Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store, which we have added.
+Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://learning.cyverse.org/vice/about/). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store, which we have added.
 
 CyVerse maintains a private [Harbor.io](https://goharbor.io) container registry. We push our containers from GitHub Actions to our Harbor, where they can be publicly re-used, or (re)built from GitHub pull requests. 
 
