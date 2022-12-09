@@ -3,11 +3,11 @@
 # jupyterlab-tensorflow
 [Project Jupyter](https://jupyter.org/) Tensorflow Notebook with CyVerse addins.
 
-Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store, which we have added.
+Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.docker.com/r/jupyter/tensorflow-notebook) for [CyVerse VICE](https://learning.cyverse.org/vice/about/). Project Jupyter's base image requires a couple additional configuration files for it be compatible with CyVerse Kubernetes orchestration and iRODS data store, which we have added.
 
 CyVerse maintains a private [Harbor.io](https://goharbor.io) container registry. We push our containers from GitHub Actions to our Harbor, where they can be publicly re-used, or (re)built from GitHub pull requests. 
 
-[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://harbor.cyverse.org/harbor/projects/17/repositories/jupyter%2Ftensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
+[![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://harbor.cyverse.org/harbor/projects/17/repositories/jupyter%2Ftensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
 
 quick launch | size | 
 ------------ | ---- | 
