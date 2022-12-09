@@ -7,7 +7,7 @@ Jupyter Lab Tensorflow image built from the [Tensorflow Notebook](https://hub.do
 
 CyVerse maintains a private [Harbor.io](https://goharbor.io) container registry. We push our containers from GitHub Actions to our Harbor, where they can be publicly re-used, or (re)built from GitHub pull requests. 
 
-[![CircleCI](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow.svg?style=svg)](https://circleci.com/gh/cyverse-vice/jupyterlab-tensorflow) [![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://harbor.cyverse.org/harbor/projects/17/repositories/jupyter%2Ftensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
+[![Harbor](https://img.shields.io/badge/CyVerse%20Harbor-gray.svg?style=popout&logo=harbor)](https://harbor.cyverse.org/harbor/projects/17/repositories/jupyter%2Ftensorflow) ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/cyverse-vice/jupyterlab-tensorflow/latest/main?style=flat-square) ![Action](https://github.com/cyverse-vice/jupyterlab-tensorflow/actions/workflows/harbor.yml/badge.svg)
 
 quick launch | size | 
 ------------ | ---- | 
