@@ -10,26 +10,27 @@ RUN apt-get update && \
 RUN apt purge nodejs -y
 
 USER jovyan
+WORKDIR /home/jovyan
 
 COPY environment.yaml .
 
 RUN conda config --add channels conda-forge
 RUN conda update -n base conda 
-RUN conda env create -f environment.yaml
+RUN mamba env create -f environment.yaml
 
 # Install JupyterLab Extensions
 RUN pip install jupyterlab-geojson sidecar
-RUN jupyter labextension install @jupyterlab/toc
+RUN sudo chown -R 1000:100 /opt/conda/share
 RUN jupyter labextension install \
     ipyvolume \
-    itkwidgets \    
-    jupyterlab_iframe \ 
+    itkwidgets \
+    jupyterlab_iframe \
     jupyter-leaflet \
     jupyter-threejs \
- && npm cache clean --force
+    && npm cache clean --force
 
 # add bqplot extension
-RUN jupyter labextension install bqplot && \
+RUN  conda install -c conda-forge bqplot && \
     jupyter nbextension install bqplot --py --symlink --sys-prefix && \ 
     jupyter nbextension enable bqplot --py --sys-prefix
 

@@ -1,7 +1,6 @@
 name: geospatial
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - altair 
   - awscli 
@@ -34,8 +33,7 @@ dependencies:
   - pysal 
   - rasterio 
   - s3fs 
-  - scikit-learn 
-  - scikit-image 
+  - scikit-learn  
   - scikit-image 
   - scipy 
   - seaborn 
