@@ -3,7 +3,7 @@ FROM jupyter/tensorflow-notebook:d113a601dbb8
 USER root
 # Install a few dependencies for iCommands, text editing, and monitoring instances
 RUN apt-get update && \
-    apt-get install -y lsb-release apt-transport-https curl gnupg2 libfuse2 gcc less nodejs software-properties-common apt-utils glances htop nano  && \
+    apt-get install -y lsb-release apt-transport-https curl gnupg2 libfuse2 gcc less nodejs software-properties-common apt-utils glances htop nano ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -18,20 +18,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add - && \
-    echo "deb [arch=amd64] https://packages.irods.org/apt/ bionic main" > /etc/apt/sources.list.d/renci-irods.list && \
-    apt-get update && \
+    echo "deb [arch=amd64] https://packages.irods.org/apt/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/renci-irods.list && \
+    apt update && \
     wget -q -c \
     http://security.ubuntu.com/ubuntu/pool/main/p/python-urllib3/python-urllib3_1.22-1ubuntu0.18.04.2_all.deb \
     http://security.ubuntu.com/ubuntu/pool/main/r/requests/python-requests_2.18.4-2ubuntu0.1_all.deb \
-    http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.7_amd64.deb && \
+    http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.10_amd64.deb && \
     apt install -y \
     ./python-urllib3_1.22-1ubuntu0.18.04.2_all.deb \
     ./python-requests_2.18.4-2ubuntu0.1_all.deb \
-    ./libssl1.0.0_1.0.2n-1ubuntu5.7_amd64.deb && \
+    ./libssl1.0.0_1.0.2n-1ubuntu5.10_amd64.deb && \
     rm -rf \
     ./python-urllib3_1.22-1ubuntu0.18.04.2_all.deb \
     ./python-requests_2.18.4-2ubuntu0.1_all.deb \
-    ./libssl1.0.0_1.0.2n-1ubuntu5.7_amd64.deb && \
+    ./libssl1.0.0_1.0.2n-1ubuntu5.10_amd64.deb && \
     apt install -y irods-icommands && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -57,7 +57,7 @@ RUN apt-get update && \
     apt-get install -y sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-    
+
 ARG LOCAL_USER=jovyan
 ARG PRIV_CMDS='/bin/ch*,/bin/cat,/bin/gunzip,/bin/tar,/bin/mkdir,/bin/ps,/bin/mv,/bin/cp,/usr/bin/apt*,/usr/bin/pip*,/bin/yum'
 
