@@ -2,34 +2,20 @@ FROM jupyter/tensorflow-notebook:latest
 
 USER root
 
-# Install a few dependencies for iCommands, text editing, and monitoring instances
+# Install a few dependencies for goCommands, text editing, and monitoring instances
 RUN apt-get update && \
-    apt-get install -y ca-certificates lsb-release apt-transport-https curl gnupg2 libfuse2 gcc less nodejs software-properties-common apt-utils glances htop nano  && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    apt-get install -y vim-nox && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    apt-get install -y emacs-nox && \
+    apt-get install -y ca-certificates lsb-release apt-transport-https curl gnupg2 libfuse2 gcc less nodejs software-properties-common apt-utils glances htop nvtop nano  && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Go
-RUN wget -q -c https://dl.google.com/go/go1.16.4.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
+RUN wget -q -c https://dl.google.com/go/go1.20.5.linux-amd64.tar.gz -O - | tar -xz -C /usr/local
 ENV PATH=$PATH:/usr/local/go/bin 
 
-# Install CyberDuck CLI
-RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && \
-    apt-get update && \
-    apt-get install duck
-
-# Install Github widget
-# RUN jupyter labextension install @jupyterlab/github
+# Install GoCommands
+RUN cd /usr/local/bin/ && \
+    GOCMD_VER=$(curl -L -s https://raw.githubusercontent.com/cyverse/gocommands/main/VERSION.txt); \
+    curl -L -s https://github.com/cyverse/gocommands/releases/download/${GOCMD_VER}/gocmd-${GOCMD_VER}-linux-amd64.tar.gz | tar zxvf -
 
 # Install and configure jupyter lab.
 COPY jupyter_notebook_config.json /opt/conda/etc/jupyter/jupyter_notebook_config.json
@@ -55,16 +41,28 @@ RUN jupyter lab build
 # purge older nodejs
 RUN apt purge nodejs -y
 
+# Install RStudio
+RUN apt update && apt install --yes gdebi-core && \
+    wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.06.0-421-amd64.deb && \
+    gdebi -n rstudio-server-2023.06.0-421-amd64.deb && \
+    rm rstudio-server-2023.06.0-421-amd64.deb && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Shiny Server
+RUN wget https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.20.1002-amd64.deb && \
+    gdebi -n shiny-server-1.5.20.1002-amd64.deb && \
+    rm shiny-server-1.5.20.1002-amd64.deb && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 USER jovyan
 WORKDIR /home/jovyan
 
-# install iRODS plugin
-RUN conda install -c conda-forge nodejs -y
-RUN pip install jupyterlab_irods==3.0.*
-
-USER root
-RUN jupyter serverextension enable --py jupyterlab_irods
-RUN jupyter labextension install ijab
+# Install Jupyter Lab Proxy extensions (RStudio Shiny cards in Launcher)
+RUN mamba install --quiet --yes jupyter-rsession-proxy jupyter-server-proxy && \
+    pip install jupyter-shiny-proxy
+    
+# Install and configure jupyter lab. 
+COPY jupyter_notebook_config.json /opt/conda/etc/jupyter/jupyter_notebook_config.json
 
 USER jovyan
 EXPOSE 8888

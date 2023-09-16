@@ -18,9 +18,14 @@ RUN conda config --add channels conda-forge
 RUN conda update -n base conda 
 RUN mamba env create -f environment.yaml
 
+<<<<<<< HEAD
 # Install JupyterLab Extensions
 RUN pip install jupyterlab-geojson sidecar
 RUN sudo chown -R 1000:100 /opt/conda/share
+=======
+USER root
+RUN jupyter labextension install @jupyterlab/toc
+>>>>>>> 610a5fa (updated)
 RUN jupyter labextension install \
     ipyvolume \
     itkwidgets \
@@ -36,6 +41,16 @@ RUN  conda install -c conda-forge bqplot && \
 
 RUN jupyter lab build
 
+USER jovyan
+
+# Install last couple JupyterLab Extensions
+RUN pip install jupyterlab-geojson sidecar
+
 RUN conda clean --all -f -y
 
-WORKDIR /home/jovyan
+WORKDIR /home/jovyan/work
+
+COPY entry.sh /bin
+RUN mkdir -p /home/jovyan/.irods
+
+ENTRYPOINT ["bash", "/bin/entry.sh"]
